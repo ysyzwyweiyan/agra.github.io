@@ -1,793 +1,139 @@
-{
-  "nodes": [
-    {
-      "width": 300,
-      "height": 382,
-      "id": "folderFiles_0",
-      "position": {
-        "x": 93.28248048780435,
-        "y": -141.12693638656816
-      },
-      "type": "customNode",
-      "data": {
-        "id": "folderFiles_0",
-        "label": "Folder with Files",
-        "version": 1,
-        "name": "folderFiles",
-        "type": "Document",
-        "baseClasses": [
-          "Document"
-        ],
-        "category": "Document Loaders",
-        "description": "Load data from folder with multiple files",
-        "inputParams": [
-          {
-            "label": "Folder Path",
-            "name": "folderPath",
-            "type": "string",
-            "placeholder": "",
-            "id": "folderFiles_0-input-folderPath-string"
-          },
-          {
-            "label": "Metadata",
-            "name": "metadata",
-            "type": "json",
-            "optional": true,
-            "additionalParams": true,
-            "id": "folderFiles_0-input-metadata-json"
-          }
-        ],
-        "inputAnchors": [
-          {
-            "label": "Text Splitter",
-            "name": "textSplitter",
-            "type": "TextSplitter",
-            "optional": true,
-            "id": "folderFiles_0-input-textSplitter-TextSplitter"
-          }
-        ],
-        "inputs": {
-          "folderPath": "/Users/xinshu/MSiA/23FALL/414-Text_Analytics/Final Project/text-info",
-          "textSplitter": "{{recursiveCharacterTextSplitter_0.data.instance}}",
-          "metadata": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "folderFiles_0-output-folderFiles-Document",
-            "name": "folderFiles",
-            "label": "Document",
-            "type": "Document"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": 93.28248048780435,
-        "y": -141.12693638656816
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 430,
-      "id": "recursiveCharacterTextSplitter_0",
-      "position": {
-        "x": -314.4457445253838,
-        "y": -165.9494656760271
-      },
-      "type": "customNode",
-      "data": {
-        "id": "recursiveCharacterTextSplitter_0",
-        "label": "Recursive Character Text Splitter",
-        "version": 2,
-        "name": "recursiveCharacterTextSplitter",
-        "type": "RecursiveCharacterTextSplitter",
-        "baseClasses": [
-          "RecursiveCharacterTextSplitter",
-          "TextSplitter",
-          "BaseDocumentTransformer",
-          "Runnable"
-        ],
-        "category": "Text Splitters",
-        "description": "Split documents recursively by different characters - starting with \"\\n\\n\", then \"\\n\", then \" \"",
-        "inputParams": [
-          {
-            "label": "Chunk Size",
-            "name": "chunkSize",
-            "type": "number",
-            "default": 1000,
-            "optional": true,
-            "id": "recursiveCharacterTextSplitter_0-input-chunkSize-number"
-          },
-          {
-            "label": "Chunk Overlap",
-            "name": "chunkOverlap",
-            "type": "number",
-            "optional": true,
-            "id": "recursiveCharacterTextSplitter_0-input-chunkOverlap-number"
-          },
-          {
-            "label": "Custom Separators",
-            "name": "separators",
-            "type": "string",
-            "rows": 4,
-            "description": "Array of custom separators to determine when to split the text, will override the default separators",
-            "placeholder": "[\"|\", \"##\", \">\", \"-\"]",
-            "additionalParams": true,
-            "optional": true,
-            "id": "recursiveCharacterTextSplitter_0-input-separators-string"
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "chunkSize": "500",
-          "chunkOverlap": "50",
-          "separators": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
-            "name": "recursiveCharacterTextSplitter",
-            "label": "RecursiveCharacterTextSplitter",
-            "type": "RecursiveCharacterTextSplitter | TextSplitter | BaseDocumentTransformer | Runnable"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": -314.4457445253838,
-        "y": -165.9494656760271
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 576,
-      "id": "chatOpenAI_0",
-      "position": {
-        "x": 510.94350136771425,
-        "y": -272.00477353649273
-      },
-      "type": "customNode",
-      "data": {
-        "id": "chatOpenAI_0",
-        "label": "ChatOpenAI",
-        "version": 2,
-        "name": "chatOpenAI",
-        "type": "ChatOpenAI",
-        "baseClasses": [
-          "ChatOpenAI",
-          "BaseChatModel",
-          "BaseLanguageModel",
-          "Runnable"
-        ],
-        "category": "Chat Models",
-        "description": "Wrapper around OpenAI large language models that use the Chat endpoint",
-        "inputParams": [
-          {
-            "label": "Connect Credential",
-            "name": "credential",
-            "type": "credential",
-            "credentialNames": [
-              "openAIApi"
-            ],
-            "id": "chatOpenAI_0-input-credential-credential"
-          },
-          {
-            "label": "Model Name",
-            "name": "modelName",
-            "type": "options",
-            "options": [
-              {
-                "label": "gpt-4",
-                "name": "gpt-4"
-              },
-              {
-                "label": "gpt-4-1106-preview",
-                "name": "gpt-4-1106-preview"
-              },
-              {
-                "label": "gpt-4-vision-preview",
-                "name": "gpt-4-vision-preview"
-              },
-              {
-                "label": "gpt-4-0613",
-                "name": "gpt-4-0613"
-              },
-              {
-                "label": "gpt-4-32k",
-                "name": "gpt-4-32k"
-              },
-              {
-                "label": "gpt-4-32k-0613",
-                "name": "gpt-4-32k-0613"
-              },
-              {
-                "label": "gpt-3.5-turbo",
-                "name": "gpt-3.5-turbo"
-              },
-              {
-                "label": "gpt-3.5-turbo-1106",
-                "name": "gpt-3.5-turbo-1106"
-              },
-              {
-                "label": "gpt-3.5-turbo-0613",
-                "name": "gpt-3.5-turbo-0613"
-              },
-              {
-                "label": "gpt-3.5-turbo-16k",
-                "name": "gpt-3.5-turbo-16k"
-              },
-              {
-                "label": "gpt-3.5-turbo-16k-0613",
-                "name": "gpt-3.5-turbo-16k-0613"
-              }
-            ],
-            "default": "gpt-3.5-turbo",
-            "optional": true,
-            "id": "chatOpenAI_0-input-modelName-options"
-          },
-          {
-            "label": "Temperature",
-            "name": "temperature",
-            "type": "number",
-            "step": 0.1,
-            "default": 0.9,
-            "optional": true,
-            "id": "chatOpenAI_0-input-temperature-number"
-          },
-          {
-            "label": "Max Tokens",
-            "name": "maxTokens",
-            "type": "number",
-            "step": 1,
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-maxTokens-number"
-          },
-          {
-            "label": "Top Probability",
-            "name": "topP",
-            "type": "number",
-            "step": 0.1,
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-topP-number"
-          },
-          {
-            "label": "Frequency Penalty",
-            "name": "frequencyPenalty",
-            "type": "number",
-            "step": 0.1,
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-frequencyPenalty-number"
-          },
-          {
-            "label": "Presence Penalty",
-            "name": "presencePenalty",
-            "type": "number",
-            "step": 0.1,
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-presencePenalty-number"
-          },
-          {
-            "label": "Timeout",
-            "name": "timeout",
-            "type": "number",
-            "step": 1,
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-timeout-number"
-          },
-          {
-            "label": "BasePath",
-            "name": "basepath",
-            "type": "string",
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-basepath-string"
-          },
-          {
-            "label": "BaseOptions",
-            "name": "baseOptions",
-            "type": "json",
-            "optional": true,
-            "additionalParams": true,
-            "id": "chatOpenAI_0-input-baseOptions-json"
-          }
-        ],
-        "inputAnchors": [
-          {
-            "label": "Cache",
-            "name": "cache",
-            "type": "BaseCache",
-            "optional": true,
-            "id": "chatOpenAI_0-input-cache-BaseCache"
-          }
-        ],
-        "inputs": {
-          "cache": "",
-          "modelName": "gpt-4",
-          "temperature": "0",
-          "maxTokens": "",
-          "topP": "",
-          "frequencyPenalty": "",
-          "presencePenalty": "",
-          "timeout": "",
-          "basepath": "",
-          "baseOptions": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
-            "name": "chatOpenAI",
-            "label": "ChatOpenAI",
-            "type": "ChatOpenAI | BaseChatModel | BaseLanguageModel | Runnable"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": 510.94350136771425,
-        "y": -272.00477353649273
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 330,
-      "id": "openAIEmbeddings_0",
-      "position": {
-        "x": -559.5032349310809,
-        "y": 381.1333486190665
-      },
-      "type": "customNode",
-      "data": {
-        "id": "openAIEmbeddings_0",
-        "label": "OpenAI Embeddings",
-        "version": 1,
-        "name": "openAIEmbeddings",
-        "type": "OpenAIEmbeddings",
-        "baseClasses": [
-          "OpenAIEmbeddings",
-          "Embeddings"
-        ],
-        "category": "Embeddings",
-        "description": "OpenAI API to generate embeddings for a given text",
-        "inputParams": [
-          {
-            "label": "Connect Credential",
-            "name": "credential",
-            "type": "credential",
-            "credentialNames": [
-              "openAIApi"
-            ],
-            "id": "openAIEmbeddings_0-input-credential-credential"
-          },
-          {
-            "label": "Strip New Lines",
-            "name": "stripNewLines",
-            "type": "boolean",
-            "optional": true,
-            "additionalParams": true,
-            "id": "openAIEmbeddings_0-input-stripNewLines-boolean"
-          },
-          {
-            "label": "Batch Size",
-            "name": "batchSize",
-            "type": "number",
-            "optional": true,
-            "additionalParams": true,
-            "id": "openAIEmbeddings_0-input-batchSize-number"
-          },
-          {
-            "label": "Timeout",
-            "name": "timeout",
-            "type": "number",
-            "optional": true,
-            "additionalParams": true,
-            "id": "openAIEmbeddings_0-input-timeout-number"
-          },
-          {
-            "label": "BasePath",
-            "name": "basepath",
-            "type": "string",
-            "optional": true,
-            "additionalParams": true,
-            "id": "openAIEmbeddings_0-input-basepath-string"
-          }
-        ],
-        "inputAnchors": [],
-        "inputs": {
-          "stripNewLines": "",
-          "batchSize": "",
-          "timeout": "",
-          "basepath": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings",
-            "name": "openAIEmbeddings",
-            "label": "OpenAIEmbeddings",
-            "type": "OpenAIEmbeddings | Embeddings"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": -559.5032349310809,
-        "y": 381.1333486190665
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 481,
-      "id": "conversationalRetrievalQAChain_0",
-      "position": {
-        "x": 975.4631329173833,
-        "y": 176.23713666192583
-      },
-      "type": "customNode",
-      "data": {
-        "id": "conversationalRetrievalQAChain_0",
-        "label": "Conversational Retrieval QA Chain",
-        "version": 1,
-        "name": "conversationalRetrievalQAChain",
-        "type": "ConversationalRetrievalQAChain",
-        "baseClasses": [
-          "ConversationalRetrievalQAChain",
-          "BaseChain",
-          "Runnable"
-        ],
-        "category": "Chains",
-        "description": "Document QA - built on RetrievalQAChain to provide a chat history component",
-        "inputParams": [
-          {
-            "label": "Return Source Documents",
-            "name": "returnSourceDocuments",
-            "type": "boolean",
-            "optional": true,
-            "id": "conversationalRetrievalQAChain_0-input-returnSourceDocuments-boolean"
-          },
-          {
-            "label": "System Message",
-            "name": "systemMessagePrompt",
-            "type": "string",
-            "rows": 4,
-            "additionalParams": true,
-            "optional": true,
-            "placeholder": "I want you to act as a document that I am having a conversation with. Your name is \"AI Assistant\". You will provide me with answers from the given info. If the answer is not included, say exactly \"Hmm, I am not sure.\" and stop after that. Refuse to answer any question not about the info. Never break character.",
-            "id": "conversationalRetrievalQAChain_0-input-systemMessagePrompt-string"
-          },
-          {
-            "label": "Chain Option",
-            "name": "chainOption",
-            "type": "options",
-            "options": [
-              {
-                "label": "MapReduceDocumentsChain",
-                "name": "map_reduce",
-                "description": "Suitable for QA tasks over larger documents and can run the preprocessing step in parallel, reducing the running time"
-              },
-              {
-                "label": "RefineDocumentsChain",
-                "name": "refine",
-                "description": "Suitable for QA tasks over a large number of documents."
-              },
-              {
-                "label": "StuffDocumentsChain",
-                "name": "stuff",
-                "description": "Suitable for QA tasks over a small number of documents."
-              }
-            ],
-            "additionalParams": true,
-            "optional": true,
-            "id": "conversationalRetrievalQAChain_0-input-chainOption-options"
-          }
-        ],
-        "inputAnchors": [
-          {
-            "label": "Language Model",
-            "name": "model",
-            "type": "BaseLanguageModel",
-            "id": "conversationalRetrievalQAChain_0-input-model-BaseLanguageModel"
-          },
-          {
-            "label": "Vector Store Retriever",
-            "name": "vectorStoreRetriever",
-            "type": "BaseRetriever",
-            "id": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever"
-          },
-          {
-            "label": "Memory",
-            "name": "memory",
-            "type": "BaseMemory",
-            "optional": true,
-            "description": "If left empty, a default BufferMemory will be used",
-            "id": "conversationalRetrievalQAChain_0-input-memory-BaseMemory"
-          }
-        ],
-        "inputs": {
-          "model": "{{chatOpenAI_0.data.instance}}",
-          "vectorStoreRetriever": "{{pineconeUpsert_0.data.instance}}",
-          "memory": "",
-          "returnSourceDocuments": "",
-          "systemMessagePrompt": "",
-          "chainOption": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "conversationalRetrievalQAChain_0-output-conversationalRetrievalQAChain-ConversationalRetrievalQAChain|BaseChain|Runnable",
-            "name": "conversationalRetrievalQAChain",
-            "label": "ConversationalRetrievalQAChain",
-            "type": "ConversationalRetrievalQAChain | BaseChain | Runnable"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": 975.4631329173833,
-        "y": 176.23713666192583
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 557,
-      "id": "pineconeUpsert_0",
-      "position": {
-        "x": 436.42572145373805,
-        "y": 396.4048627765163
-      },
-      "type": "customNode",
-      "data": {
-        "id": "pineconeUpsert_0",
-        "label": "Pinecone Upsert Document",
-        "version": 1,
-        "name": "pineconeUpsert",
-        "type": "Pinecone",
-        "baseClasses": [
-          "Pinecone",
-          "VectorStoreRetriever",
-          "BaseRetriever"
-        ],
-        "category": "Vector Stores",
-        "description": "Upsert documents to Pinecone",
-        "inputParams": [
-          {
-            "label": "Connect Credential",
-            "name": "credential",
-            "type": "credential",
-            "credentialNames": [
-              "pineconeApi"
-            ],
-            "id": "pineconeUpsert_0-input-credential-credential"
-          },
-          {
-            "label": "Pinecone Index",
-            "name": "pineconeIndex",
-            "type": "string",
-            "id": "pineconeUpsert_0-input-pineconeIndex-string"
-          },
-          {
-            "label": "Pinecone Namespace",
-            "name": "pineconeNamespace",
-            "type": "string",
-            "placeholder": "my-first-namespace",
-            "additionalParams": true,
-            "optional": true,
-            "id": "pineconeUpsert_0-input-pineconeNamespace-string"
-          },
-          {
-            "label": "Top K",
-            "name": "topK",
-            "description": "Number of top results to fetch. Default to 4",
-            "placeholder": "4",
-            "type": "number",
-            "additionalParams": true,
-            "optional": true,
-            "id": "pineconeUpsert_0-input-topK-number"
-          }
-        ],
-        "inputAnchors": [
-          {
-            "label": "Document",
-            "name": "document",
-            "type": "Document",
-            "list": true,
-            "id": "pineconeUpsert_0-input-document-Document"
-          },
-          {
-            "label": "Embeddings",
-            "name": "embeddings",
-            "type": "Embeddings",
-            "id": "pineconeUpsert_0-input-embeddings-Embeddings"
-          }
-        ],
-        "inputs": {
-          "document": [
-            "{{folderFiles_0.data.instance}}"
-          ],
-          "embeddings": "{{inMemoryEmbeddingCache_0.data.instance}}",
-          "pineconeIndex": "textanalytics",
-          "pineconeNamespace": "",
-          "topK": "4"
-        },
-        "outputAnchors": [
-          {
-            "name": "output",
-            "label": "Output",
-            "type": "options",
-            "options": [
-              {
-                "id": "pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
-                "name": "retriever",
-                "label": "Pinecone Retriever",
-                "type": "Pinecone | VectorStoreRetriever | BaseRetriever"
-              },
-              {
-                "id": "pineconeUpsert_0-output-vectorStore-Pinecone|VectorStore",
-                "name": "vectorStore",
-                "label": "Pinecone Vector Store",
-                "type": "Pinecone | VectorStore"
-              }
-            ],
-            "default": "retriever"
-          }
-        ],
-        "outputs": {
-          "output": "retriever"
-        },
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": 436.42572145373805,
-        "y": 396.4048627765163
-      },
-      "dragging": false
-    },
-    {
-      "width": 300,
-      "height": 283,
-      "id": "inMemoryEmbeddingCache_0",
-      "position": {
-        "x": -79.24475659760867,
-        "y": 311.39479941786925
-      },
-      "type": "customNode",
-      "data": {
-        "id": "inMemoryEmbeddingCache_0",
-        "label": "InMemory Embedding Cache",
-        "version": 1,
-        "name": "inMemoryEmbeddingCache",
-        "type": "InMemoryEmbeddingCache",
-        "baseClasses": [
-          "InMemoryEmbeddingCache",
-          "Embeddings"
-        ],
-        "category": "Cache",
-        "description": "Cache generated Embeddings in memory to avoid needing to recompute them.",
-        "inputParams": [
-          {
-            "label": "Namespace",
-            "name": "namespace",
-            "type": "string",
-            "optional": true,
-            "additionalParams": true,
-            "id": "inMemoryEmbeddingCache_0-input-namespace-string"
-          }
-        ],
-        "inputAnchors": [
-          {
-            "label": "Embeddings",
-            "name": "embeddings",
-            "type": "Embeddings",
-            "id": "inMemoryEmbeddingCache_0-input-embeddings-Embeddings"
-          }
-        ],
-        "inputs": {
-          "embeddings": "{{openAIEmbeddings_0.data.instance}}",
-          "namespace": ""
-        },
-        "outputAnchors": [
-          {
-            "id": "inMemoryEmbeddingCache_0-output-inMemoryEmbeddingCache-InMemoryEmbeddingCache|Embeddings",
-            "name": "inMemoryEmbeddingCache",
-            "label": "InMemoryEmbeddingCache",
-            "type": "InMemoryEmbeddingCache | Embeddings"
-          }
-        ],
-        "outputs": {},
-        "selected": false
-      },
-      "selected": false,
-      "positionAbsolute": {
-        "x": -79.24475659760867,
-        "y": 311.39479941786925
-      },
-      "dragging": false
-    }
-  ],
-  "edges": [
-    {
-      "source": "recursiveCharacterTextSplitter_0",
-      "sourceHandle": "recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable",
-      "target": "folderFiles_0",
-      "targetHandle": "folderFiles_0-input-textSplitter-TextSplitter",
-      "type": "buttonedge",
-      "id": "recursiveCharacterTextSplitter_0-recursiveCharacterTextSplitter_0-output-recursiveCharacterTextSplitter-RecursiveCharacterTextSplitter|TextSplitter|BaseDocumentTransformer|Runnable-folderFiles_0-folderFiles_0-input-textSplitter-TextSplitter",
-      "data": {
-        "label": ""
-      }
-    },
-    {
-      "source": "chatOpenAI_0",
-      "sourceHandle": "chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable",
-      "target": "conversationalRetrievalQAChain_0",
-      "targetHandle": "conversationalRetrievalQAChain_0-input-model-BaseLanguageModel",
-      "type": "buttonedge",
-      "id": "chatOpenAI_0-chatOpenAI_0-output-chatOpenAI-ChatOpenAI|BaseChatModel|BaseLanguageModel|Runnable-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-model-BaseLanguageModel",
-      "data": {
-        "label": ""
-      }
-    },
-    {
-      "source": "folderFiles_0",
-      "sourceHandle": "folderFiles_0-output-folderFiles-Document",
-      "target": "pineconeUpsert_0",
-      "targetHandle": "pineconeUpsert_0-input-document-Document",
-      "type": "buttonedge",
-      "id": "folderFiles_0-folderFiles_0-output-folderFiles-Document-pineconeUpsert_0-pineconeUpsert_0-input-document-Document",
-      "data": {
-        "label": ""
-      }
-    },
-    {
-      "source": "pineconeUpsert_0",
-      "sourceHandle": "pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever",
-      "target": "conversationalRetrievalQAChain_0",
-      "targetHandle": "conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
-      "type": "buttonedge",
-      "id": "pineconeUpsert_0-pineconeUpsert_0-output-retriever-Pinecone|VectorStoreRetriever|BaseRetriever-conversationalRetrievalQAChain_0-conversationalRetrievalQAChain_0-input-vectorStoreRetriever-BaseRetriever",
-      "data": {
-        "label": ""
-      }
-    },
-    {
-      "source": "openAIEmbeddings_0",
-      "sourceHandle": "openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings",
-      "target": "inMemoryEmbeddingCache_0",
-      "targetHandle": "inMemoryEmbeddingCache_0-input-embeddings-Embeddings",
-      "type": "buttonedge",
-      "id": "openAIEmbeddings_0-openAIEmbeddings_0-output-openAIEmbeddings-OpenAIEmbeddings|Embeddings-inMemoryEmbeddingCache_0-inMemoryEmbeddingCache_0-input-embeddings-Embeddings",
-      "data": {
-        "label": ""
-      }
-    },
-    {
-      "source": "inMemoryEmbeddingCache_0",
-      "sourceHandle": "inMemoryEmbeddingCache_0-output-inMemoryEmbeddingCache-InMemoryEmbeddingCache|Embeddings",
-      "target": "pineconeUpsert_0",
-      "targetHandle": "pineconeUpsert_0-input-embeddings-Embeddings",
-      "type": "buttonedge",
-      "id": "inMemoryEmbeddingCache_0-inMemoryEmbeddingCache_0-output-inMemoryEmbeddingCache-InMemoryEmbeddingCache|Embeddings-pineconeUpsert_0-pineconeUpsert_0-input-embeddings-Embeddings",
-      "data": {
-        "label": ""
-      }
-    }
-  ]
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agra</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3a/Taj_Mahal_sunrise.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 40px;
+        }
+        #notableArchitecture {
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 20px;
+            color: #FFF;
+            background-color: #e8491d;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #notableArchitecture:hover {
+            background-color: #ff6a3d;
+            transform: scale(1.05);
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        #notableArchitecture {
+            animation: pulse 2s infinite;
+        }
+        
+#buildingsList {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    z-index: 999;
 }
+#buildingsList ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#buildingsList li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+#buildingsList li:last-child {
+    border-bottom: none;
+}
+
+        #buildingsList ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #buildingsList li {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        #buildingsList li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "667798e2-fecd-47e7-adf7-6f656bf4ea88",
+            apiHost: "http://localhost:3000",
+            theme: {
+                button: {
+                backgroundColor: "#ff4300"},
+                chatWindow:{
+                backgroundColor: "#444444",
+                userMessage: {
+                    backgroundColor: "#ff4300"},
+                textInput:{
+                    sendButtonColor:"#ff4300"
+                }
+            }
+            }
+        })
+    </script>
+    <div class="header">
+        <h1>Agra, India</h1>
+        <span id="notableArchitecture">Notable Architecture</span>
+    </div>
+    <div id="buildingsList">
+        <ul>
+            <li>Taj Mahal</li>
+            <li>Agra Fort</li>
+            <li>Itimad-ud-daulah's Tomb</li>
+            <li>Akbar's Tomb</li>
+            <li>Jama Masjid</li>
+            <li>Jahangir Mahal</li>
+            <li>Anguri Bagh</li>
+            <li>Ibadat Khana</li>
+            <li>Diwani-i-khas and Diwan-i-aam (House of royals and house of common people)</li>
+            <li>Panch Mahal</li>
+            <li style="color: #e8491d;">If you have an interest in any of these buildings, please speak to the ChatBot.</li>
+
+        </ul>
+    </div>
+    <script>
+        document.getElementById('notableArchitecture').onclick = function() {
+            var list = document.getElementById('buildingsList');
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
+        };
+    </script>
+</body>
+</html>
